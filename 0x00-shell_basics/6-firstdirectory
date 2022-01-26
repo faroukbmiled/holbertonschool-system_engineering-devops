@@ -1,2 +1,2 @@
 #!/bin/bash
-mkdir /tmp/ my_first_directory
+cd /tmp && mkdir my_first_directory
