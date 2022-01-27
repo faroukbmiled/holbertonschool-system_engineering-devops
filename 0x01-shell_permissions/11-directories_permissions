@@ -1,2 +1,2 @@
 #!/bin/bash
-chmod -R 775
+chmod 775 /tmp/h$ -R
