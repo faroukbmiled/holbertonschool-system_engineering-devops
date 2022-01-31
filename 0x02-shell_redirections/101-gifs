@@ -1,2 +1,2 @@
 #!/bin/bash
-find . -maxdepth 1 -name "*.gif"
+find . -maxdepth 1 -name "*.gif" | LC_ALL=C sort -f
