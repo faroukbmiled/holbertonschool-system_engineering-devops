@@ -1,2 +1,2 @@
 #!/bin/bash
-find . -maxdepth 1 -name "*.gif" -type f | sed -e 's/\.png$// | LC_ALL=C sort -f
+find . -maxdepth 1 -name "*.gif" -type f | sed 's/\.gif$//' | LC_ALL=C sort -f
