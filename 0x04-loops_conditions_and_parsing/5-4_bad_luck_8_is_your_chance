@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-# This script displays "Best School" 10 times
 n=0
 while [[ $n -le 9 ]]
 do
