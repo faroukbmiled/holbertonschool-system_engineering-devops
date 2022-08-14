@@ -2,6 +2,6 @@
 # SSH configuration file
 Host 54.82.98.129
 User ubuntu
-IdentityFile ~/.ssh/school/id_rsa
+IdentityFile ~/.ssh/school
 PasswordAuthentication no
 Port 22
