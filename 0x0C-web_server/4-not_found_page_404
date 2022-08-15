@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# Not found page 404
+sudo apt-get -y update
+sudo apt-get -y install nginx
+sudo ufw allow 'Nginx HTTP'
+sudo chmod u+x /var/www/html/index.nginx-debian.html
+sudo echo 'Hello World!' > /var/www/html/index.nginx-debian.html
+echo "Ceci n'est pas une page" | sudo tee /usr/share/nginx/html/page_not_found_404.html
+sudo sed -i '37i error_page 404 /page_not_found_404.html;\nlocation = /page_not_found_404.html {\nroot /usr/share/nginx/html; \ninternal;\n}\n' /etc/nginx/sites-enabled/default
+sudo service nginx restart
