@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# Configure Second server.
+sudo apt-get -y update
+sudo apt-get -y install nginx
+add="server_name _;\n\tadd_header X-Served-By $HOSTNAME;"
+echo "Hello World!" | sudo tee /var/www/html/index.nginx-debian.html
+sudo sed -i "s/server_name _;/$add/" /etc/nginx/sites-available/default
+sudo service nginx stop
+sudo service nginx start
