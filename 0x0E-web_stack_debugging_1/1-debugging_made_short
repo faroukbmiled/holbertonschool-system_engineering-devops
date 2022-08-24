@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 # debugging Nginx web server
-sudo sed -i 's/ipv6only=on;/;/g' "s/8080/80/g" /etc/nginx/sites-enabled/default
-rm /run/nginx.pid
-sudo service nginx restart
+sudo sed -i 's/ipv6only=on;/;/g' /etc/nginx/sites-enabled/default
+sudo sed -i "s/8080/80/g" /etc/nginx/sites-enabled/default
+pkill -1 nginx
+
