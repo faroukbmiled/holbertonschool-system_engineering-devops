@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+cfg=\
+"server {
+        listen 80 default_server;
+        listen [::]:80 default_server;
+        root /usr/share/nginx/html;
+        index index.html index.htm;
+        server_name localhost;
+        location / {
+        }
+}"
+echo "$cfg" | sudo tee /etc/nginx/sites-enabled/default
+sudo service nginx stop
+sudo service nginx start
