@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 # debugging Nginx web server
-sudo rm /etc/nginx/sites-enabled/default
 cfg=\
 "server {
 listen 80 default_server;
@@ -11,5 +10,5 @@ server_name localhost;
 location / {
 }
 }"
-echo "$cfg" | sudo tee /etc/nginx/sites-enabled/default
+echo "$cfg" > sudo tee /etc/nginx/sites-enabled/default
 sudo service nginx restart
