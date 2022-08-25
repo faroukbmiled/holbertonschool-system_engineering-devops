@@ -1,6 +1,8 @@
 global
         maxconn 2048
         tune.ssl.default-dh-param 2048
+        log /dev/log    local0
+        log /dev/log    local1 notice
         chroot /var/lib/haproxy
         stats socket /run/haproxy/admin.sock mode 660 level admin expose-fd listeners
         stats timeout 30s
@@ -16,19 +18,29 @@ global
 defaults
         option forwardfor
         option http-server-close
+        option http-keep-alive
         log     global
         mode    http
         option  httplog
         option  dontlognull
-frontend web-frontend-http
-        bind *:80
-        default_backend custom-backend
+        timeout connect 5000
+        timeout client  50000
+        timeout server  50000
+        errorfile 400 /etc/haproxy/errors/400.http
+        errorfile 403 /etc/haproxy/errors/403.http
+        errorfile 408 /etc/haproxy/errors/408.http
+        errorfile 500 /etc/haproxy/errors/500.http
+        errorfile 502 /etc/haproxy/errors/502.http
+        errorfile 503 /etc/haproxy/errors/503.http
+        errorfile 504 /etc/haproxy/errors/504.http
 frontend web-frontend-https
+        mode http
+        bind *:80
         bind *:443 ssl crt /etc/haproxy/certs/www.ryuk.tech.pem
         acl letsencrypt-acl path_beg /.well-known/acme-challenge/
         use_backend letsencrypt-backend if letsencrypt-acl
-        default_backend custom-backend
-backend custom-backend
+        default_backend web-backend
+backend web-backend
         balance roundrobin
         server 4515-web-01 54.82.98.129:80 check
         server 4515-web-02 52.207.196.248:80 check
