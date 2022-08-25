@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# a Bash script that will display information about subdomains.
+
+function digdomain(){
+dig "$2.$1" | awk '/ANSWER SECTION:/{getline; printf "The subdomain %s is a %s record and points to %s\n", SUBD, $4, $5}' SUBD="$sub"
+}
+for sub in "www" "lb-01" "web-01" "web-02"
+do
+if [ "$2" == "$sub" ] || [ -z "$2" ]
+then digdomain "$1" "$sub"
+fi
+done
