@@ -28,7 +28,7 @@ datadir = /var/lib/mysql
 #
 # Instead of skip-networking the default is now to listen only on
 # localhost which is more compatible and is not less secure.
-#bind-address           = 54.82.98.129
+bind-address           = 127.0.0.1
 #mysqlx-bind-address    = 127.0.0.1
 #
 # * Fine Tuning
