@@ -13,7 +13,8 @@ if __name__ == "__main__":
     for i in target:
         if i['completed']:
             done += 1
-    print("Employee {} is done with tasks({}/{}):".format(u_name, done, len(target)))
+    print("Employee {} is done with tasks({}/{}):".format(u_name, done,
+                                                          len(target)))
     for done in target:
         if done.get('completed'):
             print("\t {}".format(done.get('title')))
