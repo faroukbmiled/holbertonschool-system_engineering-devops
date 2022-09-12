@@ -4,7 +4,7 @@ from requests import get
 from sys import argv
 
 if __name__ == "__main__":
-    id = int(argv[1])
+    id = argv[1]
     url = ('https://jsonplaceholder.typicode.com')
     user = get("{}/users/{}".format(url, id)).json()
     target = get("{}/users/{}/todos".format(url, id)).json()
