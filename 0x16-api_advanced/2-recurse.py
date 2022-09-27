@@ -18,3 +18,4 @@ def recurse(subreddit, hot_list=[], after=''):
         return hot_list
     elif req.status_code != 200:
         return None
+    recurse(subreddit, hot_list, after)
