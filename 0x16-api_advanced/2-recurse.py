@@ -4,9 +4,11 @@ import requests
 
 
 def recurse(subreddit, hot_list=[], after=''):
+    """rec func"""
     url = 'https://api.reddit.com/r/{}/hot?after={}'.format(subreddit, after)
     headers = headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0;rv:68.0)'}
-    req = requests.get(url, headers=headers, allow_redirects=False)
+    req = requests.get(url, headers=headers,
+                       params={'limit': 100}, allow_redirects=False)
     if req.status_code == 200:
         data = req.json().get('data').get('children')
         chk = req.json().get('data').get('after')
@@ -15,4 +17,5 @@ def recurse(subreddit, hot_list=[], after=''):
         if chk is None:
             recurse(subreddit, hot_list, after)
         return hot_list
-    return None
+    elif req.status_code == 404:
+        return None
