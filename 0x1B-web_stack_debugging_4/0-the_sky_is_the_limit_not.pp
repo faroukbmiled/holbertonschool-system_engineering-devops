@@ -1,11 +1,5 @@
 # rm usr limit
 exec { 'fix':
-  command => 'rm -f /etc/default/nginx',
-  path    => '/usr/local/bin/:/bin/'
-}
-
-# rm usr limit
-exec {'fix':
-  command  => 'sudo service nginx restart',
+  command => 'sudo sed -i "s/ULIMIT=\"-n 15\"/ULIMIT=\"-n 2000\"/" /etc/default/nginx && sudo service nginx restart',
   path    => '/usr/local/bin/:/bin/'
 }
