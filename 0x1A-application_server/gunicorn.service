@@ -6,7 +6,7 @@ After=network.target
 Type=notify
 User=ubuntu
 Group=www-data
-RuntimeDirectory=gunicorn
+RuntimeDirectory=/home/ubuntu/AirBnB_clone_v2/AirBnB_clone_v2/bin/
 WorkingDirectory=/home/ubuntu/AirBnB_clone_v4/
 ExecStart = /usr/bin/env \
         HBNB_MYSQL_USER=hbnb_dev \
@@ -16,7 +16,7 @@ ExecStart = /usr/bin/env \
         HBNB_TYPE_STORAGE=db \
         HBNB_API_HOST=0.0.0.0 \
         HBNB_API_PORT=5003 \
-        /home/ubuntu/.local/bin/gunicorn --workers 3 \
+        gunicorn --workers 3 \
         --access-logfile /tmp/airbnb-access.log \
         --error-logfile /tmp/airbnb-error.log --bind 0.0.0.0:5003 web_dynamic.2-hbnb:app
 
