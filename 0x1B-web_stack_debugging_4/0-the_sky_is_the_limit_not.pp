@@ -1,5 +1,9 @@
 # rm usr limit
 exec { 'fix':
-  command => 'sed -i "s/15/4096/" /etc/default/nginx && sudo service nginx restart',
-  path    => '/usr/local/bin/:/bin/'
+  command => "/bin/sed -i /etc/default/nginx -e 's/15/4098/'"
+}
+
+exec { 'restart nginx':
+  command => '/usr/sbin/service nginx restart',
+  require => Exec['fix']
 }
